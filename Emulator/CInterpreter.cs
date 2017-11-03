@@ -6,6 +6,8 @@
 
 using System;
 using System.Windows.Forms;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Emulator
 {
@@ -27,7 +29,17 @@ namespace Emulator
         private CMemory memory;
         private int curAddr;
         public bool bProgExecuted;
+        public bool bMainAllertActive=true;
 
+        public class callStackElement
+        {
+            public FlagReg FlagReg;
+            public short []REG =new short[8];
+            public int iRetAddres;
+        }
+        public Stack<callStackElement> ScallStack = new Stack<callStackElement>();
+
+        public callStackElement cSEElement; 
         public CInterpreter(ref CMemory _memory)
         {
             this.memory = _memory;
@@ -45,11 +57,15 @@ namespace Emulator
             //     this.memory.flagReg.S = true; //check if this flag is set when C = true 
             //if (/*val > 0 &&*/val !=0 && val <= 0x7F)
             //     this.memory.flagReg.S = false;
-            if (val < 0 || val > 0x7F && val <= 0xFF || val > 0x17F)//0x17E?
+            //if (val < 0 || val > 0x7F && val <= 0xFF || val > 0x17F)//0x17E?
+            //    this.memory.flagReg.S = true; //check if this flag is set when C = true 
+            //if ((val > 0 && val <= 0x7F)|| val > 0xFF && val <=0x17F)//0x17E?
+            //    this.memory.flagReg.S = false;
+            if ((val & 128) == 128)//0x17E?
                 this.memory.flagReg.S = true; //check if this flag is set when C = true 
-            if ((val > 0 && val <= 0x7F)|| val > 0xFF && val <=0x17F)//0x17E?
+           else
                 this.memory.flagReg.S = false;
-    }
+        }
 
     public void setRegister(int regNum, int val, bool bSetFlags = true)
     {
@@ -151,7 +167,12 @@ namespace Emulator
       this.curAddr = addr;
     }
 
-    public void interpretCurCommand()
+    public void Alert(String message)
+        {
+            MessageBox.Show("Emulator.Exception.message:\r\n"+message);
+        }
+
+        public void interpretCurCommand()
     {
             //if (!this.bProgExecuted)
             //  return;
@@ -163,7 +184,15 @@ namespace Emulator
                 {
                     
                     this.bProgExecuted = false;
-                    MessageBox.Show("Unsupported command:\r\n Address = " + this.curAddr.ToString("X4") + "\r\n Command = " + this.getMemory(this.curAddr).ToString("X2"));
+                    //MessageBox.Show("Unsupported command:\r\n Address = " + this.curAddr.ToString("X4") + "\r\n Command = " + this.getMemory(this.curAddr).ToString("X2"));
+                    if (bMainAllertActive)
+                    {
+                        Alert("Unsupported command:\r\n Address = " + this.curAddr.ToString("X4") + "\r\n Command = " + this.getMemory(this.curAddr).ToString("X2"));
+                    }
+                    else
+                    {
+                        bMainAllertActive = true;
+                    }
                 }
                 //PLRoutine.showRegsAndFlags();
                 string text;
@@ -468,29 +497,73 @@ namespace Emulator
       //this.callFunc(this.getWordFromTwoBytes(curOp2, curOp1));
       //this.setCurAddr(this.curAddr + 3);
       //return true;
+      if (curCmd == 0xC9)//RET
+      {
+             if (ScallStack.Count > 0)
+                {
+                    cSEElement = ScallStack.Pop();
+                    for (int iRegIndex = REG_B; iRegIndex <= REG_A; iRegIndex++)
+                    {
+                        setRegister(iRegIndex, (int)cSEElement.REG[iRegIndex],false);
+                    }
+                    this.memory.flagReg = cSEElement.FlagReg;
+                    this.setCurAddr(cSEElement.iRetAddres);
+                    return true;
+                }
+             else
+                {
+                    bMainAllertActive = false;
+                    Alert("unable to execute command RET\r\nReason: callStack is empty, no functions were called before this RET");
+                }
+                return false;
+
+      }
+    
 
       if (curCmd == 205)//CALL // check
-      { 
-        this.callFunc(this.getWordFromTwoBytes(curOp2, curOp1));
-        this.setCurAddr(this.curAddr + 3);
+      {
+                if (callFunc(this.getWordFromTwoBytes(curOp2, curOp1)))
+                {
+                    this.setCurAddr(this.curAddr + 3);
+                }
+                else
+                {
+                    //this.setCurAddr(this.curAddr + 3);
+                    cSEElement = new callStackElement
+                    {
+                        FlagReg = this.memory.flagReg,
+                        iRetAddres = this.curAddr + 3
+                    };
+                    for (int iRegIndex = REG_B; iRegIndex <= REG_A; iRegIndex++)
+                    {
+                        cSEElement.REG[iRegIndex] = (short)getRegister(iRegIndex);
+                    }
+     
+                    ScallStack.Push(cSEElement);
+                    this.setCurAddr(this.getWordFromTwoBytes(curOp2, curOp1));
+                }
         return true;
       }
       return false;
             
     }
 
-    public void callFunc(int addr)
+    public bool callFunc(int addr)
     {
       if (addr == 768)
       {
         CLabWorks.Lab1_StartSound();
+                return true;
       }
       else
       {
-        if (addr != 256)
-          return;
-        this.seggg();
+                if (addr == 256)
+                {
+                    this.seggg();
+                    return true;
+                }
       }
+            return false;
     }
         public void clearFags() // this should be called after executing operations such as INX, DCX that don't impact flags
         {
