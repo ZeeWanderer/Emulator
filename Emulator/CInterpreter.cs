@@ -6,7 +6,6 @@
 
 using System;
 using System.Windows.Forms;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Emulator
