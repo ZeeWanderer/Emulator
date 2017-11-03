@@ -1,8 +1,8 @@
 # Emulator
-#Supported Labs
+# Supported Labs
 labs 1-4
 except lab4 delay programs
-#Supported Commands
+# Supported Commands
 /* check means that command requires extensive and exhaustive testing */
 //MOV // check
 //MVI // check
