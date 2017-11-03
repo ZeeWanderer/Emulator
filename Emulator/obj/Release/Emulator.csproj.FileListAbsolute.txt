@@ -1,0 +1,14 @@
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\bin\Release\Emulator.exe.config
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\bin\Release\Emulator.exe
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\bin\Release\Emulator.pdb
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.csprojResolveAssemblyReference.cache
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.CDigit.resources
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.CPPI.resources
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.ProgramLogic.resources
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.Properties.Resources.resources
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.csproj.GenerateResource.Cache
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.csproj.CoreCompileInputs.cache
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.exe
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\obj\Release\Emulator.pdb
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\bin\Release\Emulator.exe.CodeAnalysisLog.xml
+C:\НавчанняБуфер\МПТ\Emulator\Emulator\bin\Release\Emulator.exe.lastcodeanalysissucceeded
