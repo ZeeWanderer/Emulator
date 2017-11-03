@@ -5,20 +5,20 @@ except lab4 delay programs
 # Manual
 ## Dials
 __Both dials use HEX system.__
-* Left dial - specifies address to write to or view data from.
-* Right dial - input/output dial. Right byte shows data at the current memory location, left byte shows previously viewed data. It is also used as input dial, and can show last 4 input numbers, depends on the last user action.
+* Address(Left) dial - specifies address to write to or view data from.
+* Data(Right) dial - data input/output dial. High(Right) byte shows data at the current memory location, low(left) byte shows previously viewed data. It is also used as input dial, and can show last 4 input numbers, depends on the last user action.
 ## Buttons
 * "ВОЗВРАТ" - currently unneeded.
-* "ПУСК" - execute program starting at address set in the address dial.
-* "УСТ АД" - set number from the right dial as address.
-* "ЗП" - write right byte of the right dial to memory location specified by the address dial.
+* "ПУСК" - execute program starting at address specified in the address dial.
+* "УСТ АД" - set number from the data dial as address.
+* "ЗП" - write high byte of the data dial to memory location specified by the address dial.
 * "АД++" - increment address.
 * "АД--" - decrement address.
-* "ВВОД" - chose a text hile (preferably .hex) with compiled program code. Compiled code must be in Intel HEX format.
-* "ВЫВОД" - outputs 15 memory entries from currently set address.
+* "ВВОД" - chose a text file (preferably .hex) with compiled program code. Compiled code must be in Intel HEX format.
+* "ВЫВОД" - outputs 15 memory entries from current address.
 * "СБРОС" - stops running program, resets address and input/output dial but it does not reset memory. It also stops sound.
 ## Embedded Functions
-* 0300H - Funtion that plays predetermined sound.
+* 0300H - Function that plays predetermined sound.
 ## Supported Commands
 __check means that command requires extensive and exhaustive testing__
 * //MOV // check
