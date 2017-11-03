@@ -365,7 +365,7 @@ namespace Emulator
           this.setCurAddr(this.curAddr + 1);
           return true;
         }
-        if (curCmd == 144 + regNum)//SUB
+        if (curCmd == 144 + regNum)//SUB // check
                 {
           this.setRegister(REG_A, this.getRegister(REG_A) - this.getRegister(regNum));
           this.setCurAddr(this.curAddr + 1);
