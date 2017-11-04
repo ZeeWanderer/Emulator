@@ -387,17 +387,7 @@ namespace Emulator
         }
         if (curCmd == 184 + regNum) // CMP // check
                 {
-          int num = (UInt16) this.getRegister(REG_A) - (UInt16)this.getRegister(regNum);
-                    //if (num == 0)
-                    //{
-                    //  this.memory.flagReg.Z = true;
-                    //}
-                    //else
-                    //{
-                    //  this.memory.flagReg.Z = false;
-                    //  this.memory.flagReg.C = num < 0;
-                    //}
-                    //this.setCurAddr(this.curAddr + 1);
+                    int num = (UInt16) this.getRegister(REG_A) - (UInt16)this.getRegister(regNum);
                     this.updateFlags(num); // 
                     this.setCurAddr(this.curAddr + 1);
                     return true;
