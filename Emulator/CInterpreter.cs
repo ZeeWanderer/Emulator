@@ -315,21 +315,6 @@ namespace Emulator
       {
         if (curCmd == 16 * regPaigNum + 3) //INX
         {
-                    /* working but retarded solution  */
-                    //int R1 = this.getRegister(regPaigNum * 2);
-                    //int R2 = this.getRegister(regPaigNum * 2 + 1);
-                    //if (R2+1 > (int)byte.MaxValue)
-                    //{
-                    //    this.setRegister(regPaigNum * 2, R1 + 1);
-                    //    this.setRegister(regPaigNum * 2 +1, 0);
-                    //}
-                    //else
-                    //{
-                    //    this.setRegister(regPaigNum * 2 + 1, R2 + 1);
-                    //}
-                    //this.clearFags(); //no flags should be set!!!
-
-
                     this.setRegister(regPaigNum * 2 + 1, this.getRegister(regPaigNum * 2 + 1) + 1);
                     if (this.memory.flagReg.C == true)
                     {
