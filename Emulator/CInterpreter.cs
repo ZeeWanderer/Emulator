@@ -330,10 +330,10 @@ namespace Emulator
                     //this.clearFags(); //no flags should be set!!!
 
 
-                    this.setRegister(regPaigNum * 2 + 1, this.getRegister(regPaigNum * 2 + 1) + 1,false);
+                    this.setRegister(regPaigNum * 2 + 1, this.getRegister(regPaigNum * 2 + 1) + 1);
                     if (this.memory.flagReg.C == true)
                     {
-                        this.setRegister(regPaigNum * 2, this.getRegister(regPaigNum * 2) + 1, false);
+                        this.setRegister(regPaigNum * 2, this.getRegister(regPaigNum * 2) + 1);
                     }
                     this.clearFags(); //no flags should be set!!!
 
@@ -343,10 +343,10 @@ namespace Emulator
         }
         if (curCmd == 16 * regPaigNum + 11) //DCX
         {
-                    this.setRegister(regPaigNum * 2 + 1, this.getRegister(regPaigNum * 2 + 1) - 1, false);
+                    this.setRegister(regPaigNum * 2 + 1, this.getRegister(regPaigNum * 2 + 1) - 1);
                     if (this.memory.flagReg.C == true)
                     {
-                        this.setRegister(regPaigNum * 2, this.getRegister(regPaigNum * 2) - 1, false);
+                        this.setRegister(regPaigNum * 2, this.getRegister(regPaigNum * 2) - 1);
                     }
                     this.clearFags(); //no flags should be set!!!
 
