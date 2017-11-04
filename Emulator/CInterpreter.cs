@@ -33,8 +33,8 @@ namespace Emulator
         public class callStackElement
         {
             public FlagReg FlagReg;
-            public short []REG =new short[8];
-            public int iRetAddres;
+            public UInt16 []REG =new UInt16[8];
+            public Int32 iRetAddres;
         }
         public Stack<callStackElement> ScallStack = new Stack<callStackElement>();
 
@@ -387,7 +387,7 @@ namespace Emulator
         }
         if (curCmd == 184 + regNum) // CMP // check
                 {
-          int num = this.getRegister(REG_A) - this.getRegister(regNum);
+          int num = (UInt16) this.getRegister(REG_A) - (UInt16)this.getRegister(regNum);
                     //if (num == 0)
                     //{
                     //  this.memory.flagReg.Z = true;
@@ -520,7 +520,7 @@ namespace Emulator
                     };
                     for (int iRegIndex = REG_B; iRegIndex <= REG_A; iRegIndex++)
                     {
-                        cSEElement.REG[iRegIndex] = (short)getRegister(iRegIndex);
+                        cSEElement.REG[iRegIndex] = (UInt16)getRegister(iRegIndex);
                     }
      
                     ScallStack.Push(cSEElement);
