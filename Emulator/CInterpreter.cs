@@ -52,14 +52,6 @@ namespace Emulator
                 this.memory.flagReg.C = true;
             else
                 this.memory.flagReg.C = false;
-            //if (val > 0x7F /*&& val <= 0xFF*/)
-            //     this.memory.flagReg.S = true; //check if this flag is set when C = true 
-            //if (/*val > 0 &&*/val !=0 && val <= 0x7F)
-            //     this.memory.flagReg.S = false;
-            //if (val < 0 || val > 0x7F && val <= 0xFF || val > 0x17F)//0x17E?
-            //    this.memory.flagReg.S = true; //check if this flag is set when C = true 
-            //if ((val > 0 && val <= 0x7F)|| val > 0xFF && val <=0x17F)//0x17E?
-            //    this.memory.flagReg.S = false;
             if ((val & 128) == 128)//0x17E?
                 this.memory.flagReg.S = true; //check if this flag is set when C = true 
            else
@@ -466,11 +458,7 @@ namespace Emulator
         return true;
       }
 
-      //if (curCmd != 205)// if unrecognized command
-      //  return false;
-      //this.callFunc(this.getWordFromTwoBytes(curOp2, curOp1));
-      //this.setCurAddr(this.curAddr + 3);
-      //return true;
+
       if (curCmd == 0xC9)//RET
       {
              if (ScallStack.Count > 0)
