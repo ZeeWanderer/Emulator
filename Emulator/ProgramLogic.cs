@@ -450,8 +450,8 @@ namespace Emulator
       this.But_VOZVRAT.Text = "ВОЗВРАТ";
       this.But_VOZVRAT.Click += new EventHandler(this.But_VOZVRAT_Click);
       this.But_VUVOD.Cursor = Cursors.Default;
-      //this.But_VUVOD.Enabled = false;
-      //this.But_VUVOD.FlatStyle = FlatStyle.Flat;
+      this.But_VUVOD.Enabled = false;
+      this.But_VUVOD.FlatStyle = FlatStyle.Flat;
       this.But_VUVOD.Location = new Point(104, 152);
       this.But_VUVOD.Name = "But_VUVOD";
       this.But_VUVOD.Size = new Size(72, 24);
@@ -464,8 +464,8 @@ namespace Emulator
       this.But_AD_MINUS.TabIndex = 1;
       this.But_AD_MINUS.Text = "АД--";
       this.But_AD_MINUS.Click += new EventHandler(this.But_AD_MINUS_Click);
-      //this.But_VVOD.Enabled = false;// re purpose for reading Intel HEX into memory ASAP!!! 
-      //this.But_VVOD.FlatStyle = FlatStyle.Flat;
+      this.But_VVOD.Enabled = false;// re purpose for reading Intel HEX into memory ASAP!!! 
+      this.But_VVOD.FlatStyle = FlatStyle.Flat;
       this.But_VVOD.Location = new Point(32, 152);
       this.But_VVOD.Name = "But_VVOD";
       this.But_VVOD.Size = new Size(72, 24);
@@ -839,7 +839,7 @@ namespace Emulator
         this.memory.randomiseRegisters();
         this.LR1SoundLabel.Visible = false;
       }
-            if (this.LeftIAR.getHexString().Equals("0400"))
+            else if (this.LeftIAR.getHexString().Equals("0400"))
             {
                 interpreter.Delay();
             }
@@ -879,27 +879,27 @@ namespace Emulator
        
     public void showRegsAndFlags()
     {
-      this.TBRegisterVals.Text = "A = " + this.memory.getRegister(7).ToString("X2");
+      this.TBRegisterVals.Text = "A = " + this.memory.getRegister(7).ToString();
       TextBox tbRegisterVals1 = this.TBRegisterVals;
-      string str1 = tbRegisterVals1.Text + "\r\nB = " + this.memory.getRegister(0).ToString("X2");
+      string str1 = tbRegisterVals1.Text + "\r\nB = " + this.memory.getRegister(0).ToString();
       tbRegisterVals1.Text = str1;
       TextBox tbRegisterVals2 = this.TBRegisterVals;
-      string str2 = tbRegisterVals2.Text + "\r\nC = " + this.memory.getRegister(1).ToString("X2");
+      string str2 = tbRegisterVals2.Text + "\r\nC = " + this.memory.getRegister(1).ToString();
       tbRegisterVals2.Text = str2;
       TextBox tbRegisterVals3 = this.TBRegisterVals;
-      string str3 = tbRegisterVals3.Text + "\r\nD = " + this.memory.getRegister(2).ToString("X2");
+      string str3 = tbRegisterVals3.Text + "\r\nD = " + this.memory.getRegister(2).ToString();
       tbRegisterVals3.Text = str3;
       TextBox tbRegisterVals4 = this.TBRegisterVals;
-      string str4 = tbRegisterVals4.Text + "\r\nE = " + this.memory.getRegister(3).ToString("X2");
+      string str4 = tbRegisterVals4.Text + "\r\nE = " + this.memory.getRegister(3).ToString();
       tbRegisterVals4.Text = str4;
       TextBox tbRegisterVals5 = this.TBRegisterVals;
-      string str5 = tbRegisterVals5.Text + "\r\nH = " + this.memory.getRegister(4).ToString("X2");
+      string str5 = tbRegisterVals5.Text + "\r\nH = " + this.memory.getRegister(4).ToString();
       tbRegisterVals5.Text = str5;
       TextBox tbRegisterVals6 = this.TBRegisterVals;
-      string str6 = tbRegisterVals6.Text + "\r\nL = " + this.memory.getRegister(5).ToString("X2");
+      string str6 = tbRegisterVals6.Text + "\r\nL = " + this.memory.getRegister(5).ToString();
       tbRegisterVals6.Text = str6;
       TextBox tbRegisterVals7 = this.TBRegisterVals;
-      string str7 = tbRegisterVals7.Text + "\r\nM = " + this.memory.getRegister(6).ToString("X2");
+      string str7 = tbRegisterVals7.Text + "\r\nM = " + this.memory.getRegister(6).ToString();
       tbRegisterVals7.Text = str7;
       this.TBFlags.Text = "AC= " + (object) this.memory.flagReg.AC;
       TextBox tbFlags1 = this.TBFlags;
