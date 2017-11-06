@@ -1,7 +1,7 @@
 # Emulator
 # Supported Labs
-labs 1-4,
-except lab4 delay programs
+* labs 1-4,
+* It is highly recomended to use delay function by address 0400H to implement lab 4 delay program.
 # Manual
 ## Dials
 __Both dials use HEX system.__
