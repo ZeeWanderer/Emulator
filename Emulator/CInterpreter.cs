@@ -7,6 +7,7 @@
 using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Emulator
 {
@@ -162,7 +163,18 @@ namespace Emulator
         {
             MessageBox.Show("Emulator.Exception.message:\r\n"+message);
         }
+    public void Delay()
+        {
+            Int32 HighByte = 0;
+            Int32 LowByte = 0;
 
+            Int32 I32DelayTime = 0;
+            memory.getMemoryValue(0x8000, ref HighByte, ref LowByte);
+            I32DelayTime += (HighByte << 12) + (LowByte << 8);
+            memory.getMemoryValue(0x8001, ref HighByte, ref LowByte);
+            I32DelayTime += (HighByte << 4) + (LowByte);
+            Thread.Sleep(Math.Abs(I32DelayTime));
+        }
         public void interpretCurCommand()
     {
             //if (!this.bProgExecuted)
@@ -482,7 +494,7 @@ namespace Emulator
       }
     
 
-      if (curCmd == 205)//CALL // check
+      if (curCmd == 0xCD)//CALL // check
       {
                 if (callFunc(this.getWordFromTwoBytes(curOp2, curOp1)))
                 {
@@ -517,14 +529,16 @@ namespace Emulator
         CLabWorks.Lab1_StartSound();
                 return true;
       }
-      else
-      {
                 if (addr == 256)
                 {
                     this.seggg();
                     return true;
                 }
-      }
+       if (addr == 0x0400)
+            {
+                Delay();
+                return true;
+            }
             return false;
     }
         public void clearFags() // this should be called after executing operations such as INX, DCX that don't impact flags
