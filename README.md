@@ -19,6 +19,7 @@ __Both dials use HEX system.__
 * "СБРОС" - stops running program, resets address and input/output dial but it does not reset memory. It also stops sound.
 ## Embedded Functions
 * 0300H - Function that plays predetermined sound.
+* 0400H - Delay function. It interprets 2 bytes by addresses 8000H and 8001H as signed Int32 wich contains delay time in milliseconds and then calls sleep.
 ## Supported Commands
 __check means that command requires extensive and exhaustive testing__
 * //MOV // check
