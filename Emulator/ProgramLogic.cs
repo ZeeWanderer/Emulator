@@ -839,11 +839,11 @@ namespace Emulator
         this.memory.randomiseRegisters();
         this.LR1SoundLabel.Visible = false;
       }
-            if (this.LeftIAR.getHexString().Equals("0400"))
-            {
-                interpreter.Delay();
-            }
-            else
+      else if (this.LeftIAR.getHexString().Equals("0400"))
+      {
+       interpreter.Delay();
+      }
+      else
       {
         this.interpreter.bProgExecuted = true;
         // g  
