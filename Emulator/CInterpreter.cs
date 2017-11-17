@@ -179,9 +179,11 @@ namespace Emulator
     {
             //if (!this.bProgExecuted)
             //  return;
+            //int tmpcounter = 0;
             bool test = true;
             while (this.bProgExecuted == true)
             {
+                //tmpcounter++;
                 test = this.interpretCommand(this.getMemory(this.curAddr), this.getMemory(this.curAddr + 1), this.getMemory(this.curAddr + 2));
                 if (test == false)
                 {
@@ -221,8 +223,21 @@ namespace Emulator
                 if (num < 0.0)
                     num = 0.0;
                 this.setMemory(254, (int)(num * (double)byte.MaxValue / 10.0));
+               // Thread.Sleep(10);
                 //curAddr = curAddr;
+                //if (tmpcounter%1000 == 0)
+                //{
+                //    tmpcounter = 0;
+                //    Thread.Sleep(37);
+                //}
             }
+            //if ( tmpcounter != 0)
+            //{
+            //    Int32 sleapTime = (Int32)(3.7299459456233560263244665058314e-6 * (Double)tmpcounter);
+            //    Thread.Sleep(sleapTime);
+            //    tmpcounter = 0;
+            //}
+           // Alert("instruction count = "+ tmpcounter.ToString());
     }
 
     public bool interpretCommand(int curCmd, int curOp1, int curOp2)

@@ -1049,7 +1049,7 @@ namespace Emulator
 
     private void But_SBROS_Click(object sender, EventArgs e)
     {
-            CLabWorks.SPPlayer.Stop();
+            //CLabWorks.SPPlayer.Stop();
       this.interpreter.bProgExecuted = false;
       this.LeftIAR.reset();
       this.RightIRD.reset();
