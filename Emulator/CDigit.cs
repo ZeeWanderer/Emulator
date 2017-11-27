@@ -20,11 +20,16 @@ namespace Emulator
     private PictureBox UPLEFT;
     private PictureBox DOWNLEFT;
     private PictureBox DOWNRIGHT;
+        public int value;
 
     public CDigit()
     {
       this.InitializeComponent();
     }
+        public int getvalue()
+        {
+            return value;
+        }
 
     protected override void Dispose(bool disposing)
     {

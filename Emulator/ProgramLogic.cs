@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Emulator
 {
@@ -87,6 +88,7 @@ namespace Emulator
     private CInterpreter interpreter;
     private OpenFileDialog openFileDialog1;
     private String IntelHEX;
+        private Thread CInterpreterT;
 
     public ProgramLogic()
     {
@@ -848,8 +850,20 @@ namespace Emulator
         this.interpreter.bProgExecuted = true;
         // g  
         this.interpreter.run(CMemory.HexToInt(this.LeftIAR.getHexString()));
-        this.interpreter.interpretCurCommand();
-
+                this.interpreter.interpretCurCommand();
+                //if (CInterpreterT != null)
+                //{
+                //    if (!CInterpreterT.IsAlive)
+                //    {
+                //        CInterpreterT = new Thread(interpreter.interpretCurCommand);
+                //        CInterpreterT.Start();
+                //    }
+                //}
+                //else
+                //{
+                //    CInterpreterT = new Thread(interpreter.interpretCurCommand);
+                //    CInterpreterT.Start();
+                //}
                 //string text;
                 //switch (this.interpreter.getMemory(253) & 3)
                 //{

@@ -27,6 +27,7 @@ namespace Emulator
     private Random random;
     private Cell[] memory;
     public CPPI PPI;
+        public int CDigitValue =0 ;
 
     public CMemory(ref CPPI _PPI)
     {
@@ -118,7 +119,8 @@ namespace Emulator
       int val = signifDigit << 4 | loverDigit;
       if (index1 == 251)
       {
-        string bit = CMemory.IntToBit((long) val);
+                CDigitValue = val;
+                string bit = CMemory.IntToBit((long) val);
         for (int index2 = 0; index2 < 8; ++index2)
           this.PPI.setLamp(7 - index2, index2 < bit.Length && (int) bit[bit.Length - index2 - 1] == 49);
       }

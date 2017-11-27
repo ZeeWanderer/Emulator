@@ -31,6 +31,7 @@ namespace Emulator
         public bool bProgExecuted;
         public bool bMainAllertActive=true;
 
+
         public class callStackElement
         {
             public FlagReg FlagReg;
@@ -137,6 +138,8 @@ namespace Emulator
           break;
       }
       cdigit.turnOffDigit();
+            //cdigit_.value = val;
+          
       for (int segment = 0; segment < 8; ++segment)
       {
         if ((val & (int) Math.Pow(2.0, (double) segment)) != 0)
@@ -175,7 +178,7 @@ namespace Emulator
             I32DelayTime += (HighByte << 4) + (LowByte);
             Thread.Sleep(Math.Abs(I32DelayTime));
         }
-        public void interpretCurCommand()
+        public void interpretCurCommand(object data = null)
     {
             //if (!this.bProgExecuted)
             //  return;
@@ -230,6 +233,8 @@ namespace Emulator
                     tmpcounter = 0;
                     Thread.Sleep(5);
                 }
+                
+                this.memory.PPI.logic.Update();
             }
             if (tmpcounter != 0)
             {
@@ -479,7 +484,15 @@ namespace Emulator
         this.setCurAddr(this.curAddr + 2);
         return true;
       }
-      if (curCmd == 118)//HLT // check
+            if (curCmd == 0xDB)//IN // check
+            {
+                //int val = this.cdigit_.getvalue();
+                this.setRegister(REG_A, this.memory.CDigitValue);
+                //this.setMemory(250 + curOp1, this.getRegister(7));
+                this.setCurAddr(this.curAddr + 2);
+                return true;
+            }
+            if (curCmd == 118)//HLT // check
             {
         this.bProgExecuted = false;
         return true;
