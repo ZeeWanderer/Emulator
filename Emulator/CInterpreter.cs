@@ -480,14 +480,16 @@ namespace Emulator
       }
       if (curCmd == 211)//OUT // check
             {
-        this.setMemory(250 + curOp1, this.getRegister(7));
+        this.setMemory(curOp1, this.getRegister(7));
         this.setCurAddr(this.curAddr + 2);
         return true;
       }
             if (curCmd == 0xDB)//IN // check
             {
-                //int val = this.cdigit_.getvalue();
-                this.setRegister(REG_A, this.memory.CDigitValue);
+                if (curOp1 == 0xFA)// tumblers
+                {
+                    this.setRegister(REG_A, 1 | (9* Convert.ToInt32(this.memory.PPI.CB1.Checked)) | (5 * Convert.ToInt32(this.memory.PPI.CB2.Checked)) | (3 * Convert.ToInt32(this.memory.PPI.CB3.Checked))  );
+                }
                 //this.setMemory(250 + curOp1, this.getRegister(7));
                 this.setCurAddr(this.curAddr + 2);
                 return true;

@@ -27,6 +27,7 @@ namespace Emulator
     private Random random;
     private Cell[] memory;
     public CPPI PPI;
+ 
         public int CDigitValue =0 ;
 
     public CMemory(ref CPPI _PPI)
@@ -117,14 +118,21 @@ namespace Emulator
       this.memory[index1].signifBit = (byte) signifDigit;
       this.memory[index1].lowerBit = (byte) loverDigit;
       int val = signifDigit << 4 | loverDigit;
-      if (index1 == 251)
+      if (index1 == 0x01)//port 0x01 //251
       {
                 CDigitValue = val;
                 string bit = CMemory.IntToBit((long) val);
         for (int index2 = 0; index2 < 8; ++index2)
           this.PPI.setLamp(7 - index2, index2 < bit.Length && (int) bit[bit.Length - index2 - 1] == 49);
       }
-      if (index1 != 252)
+            if (index1 == 0xF9) //port 0xF9
+            {
+                CDigitValue = val;
+                string bit = CMemory.IntToBit((long)val);
+                for (int index2 = 0; index2 < 8; ++index2)
+                    this.PPI.setLamp(7 - index2, index2 < bit.Length && (int)bit[bit.Length - index2 - 1] == 49);
+            }
+            if (index1 != 0x02) // 252
         return;
       this.PPI.setCword(val);
     }

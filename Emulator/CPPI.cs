@@ -15,7 +15,7 @@ namespace Emulator
   {
     private Container components = (Container) null;
     private PictureBox Pic1;
-    private CheckBox CB1;
+    public CheckBox CB1;
     private PictureBox Pic2;
     private PictureBox Pic3;
     private PictureBox Pic4;
@@ -23,8 +23,8 @@ namespace Emulator
     private PictureBox Pic6;
     private PictureBox Pic7;
     private PictureBox Pic8;
-    private CheckBox CB2;
-    private CheckBox CB3;
+        public CheckBox CB2;
+        public CheckBox CB3;
     private GroupBox groupBox1;
     private GroupBox groupBox2;
     private CMemory memory;
