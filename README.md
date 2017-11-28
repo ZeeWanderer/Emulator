@@ -53,3 +53,4 @@ __check means that command requires extensive and exhaustive testing__
 * //HLT
 * //RET // check
 * //CALL // check
+* //IN //check
