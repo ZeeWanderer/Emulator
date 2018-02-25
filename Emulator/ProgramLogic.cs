@@ -88,7 +88,7 @@ namespace Emulator
     private CInterpreter interpreter;
     private OpenFileDialog openFileDialog1;
     private String IntelHEX;
-        private Thread CInterpreterT;
+   //     private Thread CInterpreterT;
 
     public ProgramLogic()
     {
