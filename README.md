@@ -6,12 +6,12 @@
 ## Dials
 __Both dials use HEX system.__
 * Address(Left) dial - specifies address to write to or view data from.
-* Data(Right) dial - data input/output dial. High(Right) byte shows data at the current memory location, low(left) byte shows previously viewed data. It is also used as input dial, and can show last 4 input numbers, depends on the last user action.
+* Data(Right) dial - data input/output dial. Low(Right) byte shows data at the current memory location, High(left) byte shows previously viewed data. It is also used as input dial, and can show last 4 input numbers, depends on the last user action.
 ## Buttons
 * "ВОЗВРАТ" - currently unneeded.
 * "ПУСК" - execute program starting at address specified in the address dial.
 * "УСТ АД" - set number from the data dial as address.
-* "ЗП" - write high byte of the data dial to memory location specified by the address dial.
+* "ЗП" - write low byte of the data dial to memory location specified by the address dial.
 * "АД++" - increment address.
 * "АД--" - decrement address.
 * "ВВОД" - chose a text file (preferably .hex) with compiled program code. Compiled code must be in Intel HEX format.
